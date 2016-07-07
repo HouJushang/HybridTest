@@ -1,40 +1,34 @@
 package com.example.hou.demo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebView;
+import android.webkit.JavascriptInterface;
 import android.widget.TextView;
-import android.webkit.WebViewClient;
-import android.webkit.WebSettings;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView showBtn1;
+    private Intent webView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        showBtn1 = (TextView) findViewById(R.id.show);
-        showBtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showBtn1.setText("1额度asdasdfffklkjasasdfasd为爽肤水 !");
-            }
-        });
-
-        WebView viewContent= (WebView) findViewById(R.id.webView);
-        viewContent.setWebViewClient(new WebViewClient());
-
-        WebSettings webSettings = viewContent.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-
-        viewContent.loadUrl("file:///android_asset/H5/index.html#/list/1");
+        webView = new Intent(this, WebViewActivity.class);
 
     }
-    public void showMess(View source){
-        TextView showBtn2 = (TextView) findViewById(R.id.show2);
-        showBtn2.setText("切,你也点击我了!");
+
+    public void goH5(View source) {
+        webView.putExtra("url", "file:///android_asset/H5/index.html");
+        startActivity(webView);
+    }
+
+    public void goTrainList(View source) {
+        webView.putExtra("url", "file:///android_asset/DG/index.html#/trainList");
+        startActivity(webView);
+    }
+    public void goTrainBuy(View source) {
+        webView.putExtra("url", "file:///android_asset/DG/index.html#/trainIndex");
+        startActivity(webView);
     }
 }

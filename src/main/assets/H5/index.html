@@ -12,10 +12,26 @@
 <a href="#/detail/2">详情2</a>
 <a href="#/list/1">列表1</a>
 <a href="#/list/2">列表2</a>
+<button id="btn">
+    测试安卓接口
+</button>
+<button id='btn2'>
+    调用安卓toast
+</button>
 <a href="#/sss">其他路由跳转到默认路由</a>
 <script src="./js/router.js"></script>
 <script>
     console.log("你已经进入了");
+    var oBtn = document.getElementById("btn");
+    var oBtn2 = document.getElementById("btn2");
+
+    oBtn.onclick = function(){
+        console.log(AndroidApi.toString());
+    }
+    oBtn2.onclick= function(){
+        AndroidApi.androidToast("sdf");
+    }
+
     new $router().add('home',{
         url: '/home',
         ctrl: function(){
@@ -37,6 +53,7 @@
              console.log(id);
         }
     }).default('home').complete();
+
 </script>
 </body>
 </html>
